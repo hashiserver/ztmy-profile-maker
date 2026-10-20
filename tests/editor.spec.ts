@@ -255,11 +255,16 @@ test('home has Japanese title, top disclaimer and credited author without promot
     '公式サービスとは関係ありません',
   );
   await page
-    .getByRole('button', { name: '文禍伝雷のテンプレートを見る' })
+    .getByRole('button', { name: 'オリジナル・デモのテンプレートを見る' })
     .click();
   await expect(
-    page.locator('.template-info').getByRole('link', { name: '@1to_ztmy' }),
-  ).toHaveAttribute('href', 'https://x.com/1to_ztmy');
+    page
+      .locator('.template-info')
+      .getByRole('link', { name: 'ずとまよプロフィールメーカー 運営' }),
+  ).toHaveAttribute(
+    'href',
+    'https://github.com/hashiserver/ztmy-profile-maker',
+  );
   await expect(page.getByText('A LITTLE ABOUT YOU.')).toHaveCount(0);
   await expect(page.getByText('あなたの「好き」を、')).toHaveCount(0);
   await page.screenshot({
