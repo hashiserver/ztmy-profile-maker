@@ -3,6 +3,9 @@ test('select, edit, export source-size PNG, restore local draft', async ({
   page,
 }) => {
   await page.goto('/');
+  await page
+    .getByRole('button', { name: 'オリジナル・デモのテンプレートを見る' })
+    .click();
   await page.locator('a.primary-button[href="/edit/midnight-note/"]').click();
   await expect(page.getByText('編集できます', { exact: true })).toBeVisible();
   await page
@@ -251,6 +254,9 @@ test('home has Japanese title, top disclaimer and credited author without promot
   await expect(page.locator('.unofficial-notice')).toContainText(
     '公式サービスとは関係ありません',
   );
+  await page
+    .getByRole('button', { name: '文禍伝雷のテンプレートを見る' })
+    .click();
   await expect(
     page.locator('.template-info').getByRole('link', { name: '@1to_ztmy' }),
   ).toHaveAttribute('href', 'https://x.com/1to_ztmy');
