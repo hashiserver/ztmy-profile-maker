@@ -36,10 +36,10 @@ export const templates: Template[] = [
     height: 2048,
     background: '/templates/ztmy-heijokyo-2026.jpg',
     author: {
-      id: 'provided-author-pending',
-      name: '作者情報確認中',
+      id: '1to_ztmy',
+      name: '@1to_ztmy',
       avatar: '/templates/author-pending.svg',
-      url: '/about/#template-permission',
+      url: 'https://x.com/1to_ztmy',
     },
     icon: { x: 683, y: 313, size: 332 },
     shareText: '自己紹介カードを作りました。 #ずとまよ好きと繋がりたい',
@@ -114,7 +114,7 @@ export const templates: Template[] = [
     background: '/templates/midnight-note.svg',
     author: {
       id: 'operator',
-      name: 'ztmy profile maker 運営',
+      name: 'ずとまよプロフィールメーカー 運営',
       avatar: '/templates/avatar.svg',
       url: 'https://github.com/hashiserver/ztmy-profile-maker',
     },

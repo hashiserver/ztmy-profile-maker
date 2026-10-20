@@ -1,8 +1,8 @@
 ---
 import '../styles/global.css';
 const {
-  title = 'ztmy profile maker',
-  description = 'あなたの「好き」を、一枚に。ブラウザで自己紹介カードを作成する非公式ファンツール。',
+  title = 'ずとまよプロフィールメーカー',
+  description = 'テンプレートに文字とアイコンを入れて自己紹介カードを作成。ずっと真夜中でいいのに。とは関係のない非公式ファンツールです。',
 } = Astro.props;
 ---
 
@@ -22,22 +22,23 @@ const {
   ><body>
     <a class="skip-link" href="#main">本文へ移動</a>
     <header class="site-header">
-      <a href="/" class="brand"
-        ><img src="/templates/avatar.svg" width="28" height="28" alt="" />ztmy <span
-          >profile maker</span
-        ></a
-      ><a href="/about/" class="header-link">このサービスについて ↗</a>
+      <a href="/" class="brand">ずとまよ<span>プロフィールメーカー</span></a>
+      <a href="/about/" class="header-link">このサイトについて ↗</a>
     </header>
+    <p class="unofficial-notice">
+      非公式ファンサイトです。ずっと真夜中でいいのに。および所属事務所・公式サービスとは関係ありません。
+    </p>
     <main id="main"><slot /></main>
     <footer class="site-footer">
-      <p>ztmy profile maker <span>非公式ファンツール</span></p><nav
+      <p>ずとまよプロフィールメーカー <span>非公式ファンツール</span></p><nav
         aria-label="フッター"
       >
         <a href="/about/">このサービスについて</a><a href="/terms/">利用規約</a
         ><a href="/privacy/">プライバシー</a><a
           href="https://github.com/hashiserver/ztmy-profile-maker"
           target="_blank"
-          rel="noopener noreferrer">GitHub ↗</a>
+          rel="noopener noreferrer">GitHub ↗</a
+        >
       </nav>
     </footer>
   </body>

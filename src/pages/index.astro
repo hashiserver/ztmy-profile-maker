@@ -5,28 +5,17 @@ import { templates } from '../data/templates';
 
 <Layout
   ><div class="home-shell">
-    <section class="hero">
-      <p class="eyebrow">A LITTLE ABOUT YOU.</p><h1>
-        あなたの「好き」を、<br /><span>一枚に。</span>
-      </h1><p class="hero-description">
-        好きな曲も、忘れられない夜も。<br
-        />ことばをのせて、あなたらしい自己紹介カードを。
-      </p><div class="hero-tags">
-        <span>登録不要</span><span>ブラウザだけで編集</span><span
-          >PNGで保存</span
-        >
-      </div><div class="hero-mark" aria-hidden="true">
-        夜<span>の、つづき。</span>
-      </div>
+    <section class="tool-intro">
+      <p class="index-label">自己紹介カード作成</p>
+      <h1>ずとまよ<br />プロフィールメーカー</h1>
+      <p>テンプレートを選ぶ → 文字・アイコンを入れる → 画像を保存</p>
     </section>
     <section class="template-section" aria-labelledby="templates-heading">
       <div class="section-title">
         <div>
-          <p class="eyebrow">CHOOSE YOUR CANVAS</p><h2 id="templates-heading">
-            テンプレートを選ぶ
-          </h2>
+          <h2 id="templates-heading">テンプレートを選ぶ</h2>
         </div><span class="count"
-          >{String(templates.length).padStart(2, '0')} TEMPLATE</span
+          >{String(templates.length).padStart(2, '0')} 種類</span
         >
       </div><div class="template-list">
         {
@@ -54,7 +43,7 @@ import { templates } from '../data/templates';
                 <div class="template-info">
                   <>
                     <p class="eyebrow">
-                      {String(index + 1).padStart(2, '0')} / MUSIC & YOU
+                      テンプレート {String(index + 1).padStart(2, '0')}
                     </p>
                     <h3>{t.title}</h3>
                     <p>
@@ -90,8 +79,8 @@ import { templates } from '../data/templates';
     </section>
     <aside class="home-note">
       <span class="note-number">NOTE</span><p>
-        現在は開発中のプレビューです。<br
-        />提供テンプレートの許諾・作者情報は確認中です。一般公開前に確認を完了します。
+        現在は開発中のプレビューです。<br />提供テンプレートの作者は @1to_ztmy
+        さんです。掲載許諾・利用条件は確認中です。
       </p>
     </aside>
   </div></Layout

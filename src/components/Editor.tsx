@@ -228,7 +228,7 @@ export default function Editor({ template }: { template: Template }) {
       </div>
       <div className="editor-heading">
         <div>
-          <p className="eyebrow">YOUR PROFILE, YOUR WORDS.</p>
+          <p className="eyebrow">自己紹介カードを編集</p>
           <h1>{template.title}</h1>
         </div>
         <span className="demo-badge">
@@ -248,7 +248,7 @@ export default function Editor({ template }: { template: Template }) {
       <div className="editor-grid">
         <section className="preview-panel" aria-label="カードプレビュー">
           <div className="preview-meta">
-            <span>PREVIEW</span>
+            <span>仕上がりプレビュー</span>
             <span>
               {template.width} × {template.height} px
             </span>
@@ -257,11 +257,17 @@ export default function Editor({ template }: { template: Template }) {
             template={template}
             draft={draft}
             selected={selected}
-            onSelect={setSelected}
+            onSelect={(id) => {
+              setSelected(id);
+              const input = document.getElementById(`field-${id}`);
+              input?.scrollIntoView({ block: 'center', behavior: 'instant' });
+              input?.focus({ preventScroll: true });
+            }}
             onWarnings={onWarnings}
           />
           <p className="preview-hint">
-            カードの枠をタップすると、その項目を編集できます。
+            点線の枠をタップ →
+            対応する入力欄へ移動します。枠は保存画像には入りません。
           </p>
           <a
             className="author"
@@ -271,7 +277,7 @@ export default function Editor({ template }: { template: Template }) {
           >
             <img src={template.author.avatar} width="32" height="32" alt="" />
             <span>
-              Template by
+              テンプレート作者
               <br />
               <strong>{template.author.name} ↗</strong>
             </span>
@@ -281,151 +287,165 @@ export default function Editor({ template }: { template: Template }) {
           <div className="panel-header">
             <span className="step-number">01</span>
             <div>
-              <h2>ことばを入れる</h2>
-              <p>あなたの「好き」を、少しずつ。</p>
+              <h2>自己紹介を入力</h2>
+              <p>下の入力欄に書くと、カードに反映されます。</p>
             </div>
           </div>
           <fieldset disabled={!ready || busy || uploading}>
             <legend className="sr-only">文字とアイコンの編集</legend>
-            <div className="field-tabs" role="group" aria-label="編集する項目">
+            <div className="text-fields">
               {template.fields
-                .filter((f) => f.kind === 'text')
-                .map((f) => (
-                  <button
-                    key={f.id}
-                    type="button"
-                    aria-pressed={selected === f.id}
-                    onClick={() => setSelected(f.id)}
-                  >
-                    {f.label}
-                  </button>
-                ))}
+                .filter((f): f is TextField => f.kind === 'text')
+                .map((f, index) => {
+                  const props = {
+                    id: `field-${f.id}`,
+                    value: draft.values[f.id] || '',
+                    placeholder: `${f.label}を入力`,
+                    onFocus: () => setSelected(f.id),
+                    onCompositionStart: () => setComposing(true),
+                    onCompositionEnd: () => setComposing(false),
+                    onChange: (
+                      e: React.ChangeEvent<
+                        HTMLInputElement | HTMLTextAreaElement
+                      >,
+                    ) =>
+                      update((d) => ({
+                        ...d,
+                        values: { ...d.values, [f.id]: e.target.value },
+                      })),
+                  };
+                  return (
+                    <div
+                      key={f.id}
+                      className={`text-field ${selected === f.id ? 'active' : ''}`}
+                    >
+                      <label className="input-label" htmlFor={props.id}>
+                        <span className="field-number" aria-hidden="true">
+                          {index + 1}
+                        </span>
+                        {f.label}
+                      </label>
+                      {f.multiline || f.direction === 'vertical' ? (
+                        <textarea {...props} rows={3} />
+                      ) : (
+                        <input {...props} type="text" />
+                      )}
+                    </div>
+                  );
+                })}
             </div>
-            <label className="input-label" htmlFor="field-value">
-              {field.label}
-              <small aria-hidden="true">
-                {field.direction === 'vertical' ? '縦書き' : '横書き'}
-              </small>
-            </label>
-            {field.multiline || field.direction === 'vertical' ? (
-              <textarea
-                id="field-value"
-                rows={3}
-                value={draft.values[field.id] || ''}
-                placeholder="ここに入力"
-                onCompositionStart={() => setComposing(true)}
-                onCompositionEnd={() => setComposing(false)}
-                onChange={(e) =>
-                  update((d) => ({
-                    ...d,
-                    values: { ...d.values, [field.id]: e.target.value },
-                  }))
-                }
-              />
-            ) : (
-              <input
-                id="field-value"
-                type="text"
-                value={draft.values[field.id] || ''}
-                placeholder="ここに入力"
-                onCompositionStart={() => setComposing(true)}
-                onCompositionEnd={() => setComposing(false)}
-                onChange={(e) =>
-                  update((d) => ({
-                    ...d,
-                    values: { ...d.values, [field.id]: e.target.value },
-                  }))
-                }
-              />
-            )}
-            <div className="style-grid">
-              <label>
-                フォント
+            <details className="text-settings">
+              <summary>文字の見た目を調整（{field.label}）</summary>
+              <label className="select-label">
+                調整する項目
                 <select
-                  value={style.font}
-                  onChange={(e) =>
-                    setStyle({ font: e.target.value as TextStyle['font'] })
-                  }
+                  value={selected}
+                  onChange={(e) => setSelected(e.target.value)}
                 >
-                  <option value="sans">すっきりゴシック</option>
-                  <option value="serif">しなやか明朝</option>
+                  {template.fields
+                    .filter((f) => f.kind === 'text')
+                    .map((f) => (
+                      <option key={f.id} value={f.id}>
+                        {f.label}
+                      </option>
+                    ))}
                 </select>
               </label>
-              <label>
-                文字色
+              <div className="style-grid">
+                <label>
+                  フォント
+                  <select
+                    value={style.font}
+                    onChange={(e) =>
+                      setStyle({ font: e.target.value as TextStyle['font'] })
+                    }
+                  >
+                    <option value="sans">すっきりゴシック</option>
+                    <option value="serif">しなやか明朝</option>
+                  </select>
+                </label>
+                <label>
+                  文字色
+                  <input
+                    type="color"
+                    value={style.color}
+                    onChange={(e) => setStyle({ color: e.target.value })}
+                  />
+                </label>
+              </div>
+              <label className="range-label">
+                文字サイズ <output>{style.fontSize}px</output>
                 <input
-                  type="color"
-                  value={style.color}
-                  onChange={(e) => setStyle({ color: e.target.value })}
+                  aria-label="文字サイズ"
+                  type="range"
+                  min={field.minFontSize}
+                  max="100"
+                  value={style.fontSize}
+                  onChange={(e) =>
+                    setStyle({ fontSize: Number(e.target.value) })
+                  }
                 />
               </label>
-            </div>
-            <label className="range-label">
-              文字サイズ <output>{style.fontSize}px</output>
-              <input
-                aria-label="文字サイズ"
-                type="range"
-                min={field.minFontSize}
-                max="100"
-                value={style.fontSize}
-                onChange={(e) => setStyle({ fontSize: Number(e.target.value) })}
-              />
-            </label>
-            <label className="check-label">
-              <input
-                type="checkbox"
-                checked={style.autoFit}
-                onChange={(e) => setStyle({ autoFit: e.target.checked })}
-              />{' '}
-              枠に合わせて文字を自動で小さくする
-            </label>
-            {field.direction === 'horizontal' && (
-              <label className="select-label">
-                揃え
-                <select
-                  value={style.align}
-                  onChange={(e) =>
-                    setStyle({ align: e.target.value as TextStyle['align'] })
-                  }
-                >
-                  <option value="left">左揃え</option>
-                  <option value="center">中央揃え</option>
-                  <option value="right">右揃え</option>
-                </select>
+              <label className="check-label">
+                <input
+                  type="checkbox"
+                  checked={style.autoFit}
+                  onChange={(e) => setStyle({ autoFit: e.target.checked })}
+                />{' '}
+                枠に合わせて文字を自動で小さくする
               </label>
-            )}
-            <details className="adjust-details">
-              <summary>文字の位置を調整</summary>
-              <p className="helper">元の画像を基準に1pxずつ移動します。</p>
-              <div className="nudge-controls">
-                <button
-                  aria-label="文字を左に移動"
-                  onClick={() => setStyle({ dx: Math.max(-32, style.dx - 1) })}
-                >
-                  ←
-                </button>
-                <button
-                  aria-label="文字を上に移動"
-                  onClick={() => setStyle({ dy: Math.max(-24, style.dy - 1) })}
-                >
-                  ↑
-                </button>
-                <button
-                  aria-label="文字を下に移動"
-                  onClick={() => setStyle({ dy: Math.min(24, style.dy + 1) })}
-                >
-                  ↓
-                </button>
-                <button
-                  aria-label="文字を右に移動"
-                  onClick={() => setStyle({ dx: Math.min(32, style.dx + 1) })}
-                >
-                  →
-                </button>
-                <button onClick={() => setStyle({ dx: 0, dy: 0 })}>
-                  位置を戻す
-                </button>
-              </div>
+              {field.direction === 'horizontal' && (
+                <label className="select-label">
+                  揃え
+                  <select
+                    value={style.align}
+                    onChange={(e) =>
+                      setStyle({ align: e.target.value as TextStyle['align'] })
+                    }
+                  >
+                    <option value="left">左揃え</option>
+                    <option value="center">中央揃え</option>
+                    <option value="right">右揃え</option>
+                  </select>
+                </label>
+              )}
+              <details className="adjust-details">
+                <summary>文字の位置を調整</summary>
+                <p className="helper">元の画像を基準に1pxずつ移動します。</p>
+                <div className="nudge-controls">
+                  <button
+                    aria-label="文字を左に移動"
+                    onClick={() =>
+                      setStyle({ dx: Math.max(-32, style.dx - 1) })
+                    }
+                  >
+                    ←
+                  </button>
+                  <button
+                    aria-label="文字を上に移動"
+                    onClick={() =>
+                      setStyle({ dy: Math.max(-24, style.dy - 1) })
+                    }
+                  >
+                    ↑
+                  </button>
+                  <button
+                    aria-label="文字を下に移動"
+                    onClick={() => setStyle({ dy: Math.min(24, style.dy + 1) })}
+                  >
+                    ↓
+                  </button>
+                  <button
+                    aria-label="文字を右に移動"
+                    onClick={() => setStyle({ dx: Math.min(32, style.dx + 1) })}
+                  >
+                    →
+                  </button>
+                  <button onClick={() => setStyle({ dx: 0, dy: 0 })}>
+                    位置を戻す
+                  </button>
+                </div>
+              </details>
             </details>
             {warnings.length > 0 && (
               <ul className="warnings" aria-live="polite">
@@ -475,7 +495,7 @@ export default function Editor({ template }: { template: Template }) {
             <div className="panel-header">
               <span className="step-number">02</span>
               <div>
-                <h2>アイコンを添える</h2>
+                <h2>アイコン画像を選ぶ</h2>
                 <p>画像はこのブラウザ内で処理します。</p>
               </div>
             </div>
@@ -551,7 +571,7 @@ export default function Editor({ template }: { template: Template }) {
           <div className="panel-header">
             <span className="step-number">03</span>
             <div>
-              <h2>できたら、シェア。</h2>
+              <h2>画像を保存・共有</h2>
               <p>原寸のPNG画像で保存できます。</p>
             </div>
           </div>

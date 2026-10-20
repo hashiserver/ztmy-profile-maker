@@ -10,15 +10,15 @@
     'Hiragino Kaku Gothic ProN',
     'Yu Gothic',
     sans-serif;
-  color: #30253e;
-  background: #faf9f6;
+  color: #20211e;
+  background: #eeede6;
   line-height: 1.7;
   font-synthesis: none;
-  --accent: #6540a4;
-  --border: #ded9e2;
-  --muted: #6d6578;
+  --accent: #364b21;
+  --border: #b9bab0;
+  --muted: #56594f;
   --surface: #fff;
-  --tint: #f0ebf6;
+  --tint: #e7ebdc;
 }
 * {
   box-sizing: border-box;
@@ -66,7 +66,7 @@ button {
 }
 button:hover {
   border-color: var(--accent);
-  background: #f8f5fc;
+  background: #edf2df;
 }
 button:disabled {
   cursor: wait;
@@ -80,7 +80,7 @@ select,
 textarea {
   width: 100%;
   min-height: 46px;
-  border: 1px solid #bcb3c8;
+  border: 1px solid #909487;
   border-radius: 8px;
   padding: 10px 12px;
   background: white;
@@ -198,62 +198,12 @@ fieldset {
   max-width: 1136px;
   margin: auto;
 }
-.hero {
-  padding: 76px 0 65px;
-  position: relative;
-  overflow: hidden;
-}
 .eyebrow {
   font-size: 10px;
   letter-spacing: 2px;
   font-weight: 650;
   margin: 0 0 16px;
   color: var(--muted);
-}
-.hero h1 {
-  font-size: clamp(36px, 4.5vw, 60px);
-  line-height: 1.55;
-  font-weight: 650;
-  letter-spacing: 0.02em;
-  margin: 0 0 26px;
-}
-.hero h1 span {
-  color: var(--accent);
-}
-.hero-description {
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 2;
-}
-.hero-tags {
-  display: flex;
-  gap: 10px;
-  margin-top: 24px;
-}
-.hero-tags span {
-  font-size: 10px;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 3px 12px;
-}
-.hero-mark {
-  position: absolute;
-  right: 78px;
-  top: 50px;
-  font-family: serif;
-  font-size: 230px;
-  line-height: 1.3;
-  color: #dcd0e9;
-  transform: rotate(-8deg);
-  user-select: none;
-}
-.hero-mark span {
-  display: block;
-  font-size: 16px;
-  letter-spacing: 9px;
-  color: #78658e;
-  text-align: right;
-  margin-top: -32px;
 }
 .section-title {
   display: flex;
@@ -303,7 +253,7 @@ fieldset {
   object-fit: contain;
   display: block;
   margin: auto;
-  box-shadow: 0 8px 25px #30253e15;
+  box-shadow: 0 8px 25px #20211e15;
   transform: rotate(-3deg);
   transition: transform 0.2s;
 }
@@ -444,7 +394,7 @@ fieldset {
 .preview-panel {
   position: sticky;
   top: 24px;
-  background: #f0ecf3;
+  background: #dedfd6;
   padding: 22px 32px 18px;
   border-radius: 12px;
   min-width: 0;
@@ -462,7 +412,7 @@ fieldset {
   width: 100%;
   max-width: 492px;
   margin: auto;
-  box-shadow: 0 7px 22px #30253e0d;
+  box-shadow: 0 7px 22px #20211e0d;
 }
 .preview-card canvas {
   width: 100%;
@@ -483,7 +433,7 @@ fieldset {
   background: transparent;
 }
 .field-target:hover {
-  background: #6540a410;
+  background: #364b2110;
   border-color: #8b6aac;
 }
 .field-target.selected {
@@ -537,23 +487,6 @@ fieldset {
   font-size: 10px;
   color: var(--muted);
   margin: 2px 0 0;
-}
-.field-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 20px;
-}
-.field-tabs button {
-  font-size: 10px;
-  padding: 5px 11px;
-  min-height: 36px;
-  border-radius: 6px;
-}
-.field-tabs button[aria-pressed='true'] {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: white;
 }
 .input-label {
   display: flex;
@@ -815,15 +748,6 @@ fieldset {
   }
 }
 @media (max-width: 900px) {
-  .hero-mark {
-    right: 10px;
-    opacity: 0.6;
-    font-size: 180px;
-    top: 90px;
-  }
-  .hero {
-    padding-block: 55px;
-  }
   .template-tile {
     gap: 28px;
     padding: 20px;
@@ -881,38 +805,6 @@ fieldset {
   .home-shell,
   .editor-shell {
     margin-inline: 20px;
-  }
-  .hero {
-    padding-block: 48px 40px;
-  }
-  .hero h1 {
-    font-size: 36px;
-    position: relative;
-    z-index: 1;
-  }
-  .hero-mark {
-    right: -20px;
-    top: 55px;
-    font-size: 135px;
-    opacity: 0.4;
-  }
-  .hero-mark span {
-    font-size: 9px;
-    margin-top: -14px;
-    letter-spacing: 4px;
-  }
-  .hero-description {
-    font-size: 12px;
-    position: relative;
-    z-index: 1;
-  }
-  .hero-tags {
-    gap: 6px;
-    flex-wrap: wrap;
-  }
-  .hero-tags span {
-    font-size: 9px;
-    padding: 3px 8px;
   }
   .section-title {
     padding-top: 25px;
@@ -1011,10 +903,6 @@ fieldset {
   .controls-panel {
     padding: 22px 20px;
   }
-  .field-tabs button {
-    min-height: 44px;
-    font-size: 11px;
-  }
   .controls-panel input[type='text'],
   .controls-panel textarea,
   .controls-panel select {
@@ -1066,5 +954,323 @@ fieldset {
   }
   .template-art > img {
     transform: none;
+  }
+}
+
+/* The artwork carries the color; the tool uses paper, ink and a restrained green. */
+.site-header {
+  background: #171a16;
+  color: #f5f3e9;
+  padding-block: 24px;
+  border-bottom: 1px solid #59614e;
+}
+.brand {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  gap: 0;
+  flex-wrap: wrap;
+}
+.brand span {
+  color: inherit;
+  font-weight: inherit;
+}
+.site-header .header-link {
+  color: #e1e7d8;
+  flex-shrink: 0;
+}
+.site-header a:hover {
+  color: #ceef84;
+}
+.unofficial-notice {
+  margin: 0;
+  padding: 12px 24px;
+  background: #d9e5bf;
+  border-bottom: 1px solid #929b7e;
+  color: #282e21;
+  text-align: center;
+  font-size: 12px;
+}
+.tool-intro {
+  padding: 54px 0 40px;
+  border-bottom: 2px solid #242a20;
+}
+.index-label {
+  display: inline-block;
+  margin: 0 0 16px;
+  padding: 2px 10px;
+  background: #242a20;
+  color: #e8eddb;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+}
+.tool-intro h1 {
+  margin: 0 0 22px;
+  font-size: clamp(28px, 4.5vw, 56px);
+  font-weight: 900;
+  line-height: 1.35;
+  letter-spacing: -0.04em;
+}
+.tool-intro > p:last-child {
+  font-size: 14px;
+}
+.section-title {
+  margin-top: 32px;
+}
+.section-title h2 {
+  font-size: 22px;
+  font-weight: 700;
+}
+.template-tile {
+  border: 1px solid #8c9281;
+  border-radius: 0;
+  background: #f8f7f0;
+  box-shadow: 5px 5px 0 #c9cebd;
+  overflow: hidden;
+}
+.template-art {
+  border-radius: 0;
+  background: #d4d9c7;
+  padding: 28px;
+}
+.template-art img {
+  transform: none;
+  box-shadow: 3px 4px 0 #1b211d38;
+  border-radius: 0;
+}
+.template-art:hover img {
+  transform: none;
+}
+.template-info h3 {
+  font-size: 24px;
+  font-weight: 800;
+}
+.template-info .eyebrow {
+  color: #4e5845;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+.primary-button {
+  background: #242e1e;
+  border: 1px solid #242e1e;
+  border-radius: 0;
+  color: #fff;
+  box-shadow: 3px 3px 0 #adba91;
+}
+.primary-button:hover {
+  background: #3d512a;
+  color: white;
+}
+button,
+select,
+textarea,
+input:not([type='range'], [type='checkbox'], [type='radio'], [type='file']) {
+  border-radius: 0;
+}
+.tile-badge,
+.demo-badge {
+  border-radius: 0;
+  background: #f1efdb;
+  color: #454632;
+}
+.home-note {
+  border-radius: 0;
+  background: transparent;
+  border-top: 1px solid #9fa491;
+}
+.site-footer {
+  border-top: 1px solid #9fa491;
+}
+.editor-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 440px);
+  gap: 32px;
+}
+.preview-panel {
+  top: 20px;
+  border: 1px solid #939b86;
+  border-radius: 0;
+  background: #d7ddcb;
+  padding: 20px;
+}
+.preview-meta {
+  color: #424b39;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+.preview-hint {
+  font-size: 12px;
+  color: #424b39;
+}
+.controls-panel {
+  border-radius: 0;
+  border-color: #939b86;
+  max-height: none;
+  overflow: visible;
+}
+.editor-heading h1 {
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 800;
+}
+.editor-heading .eyebrow {
+  font-size: 12px;
+}
+.panel-header h2 {
+  font-size: 18px;
+}
+.panel-header p,
+.helper {
+  font-size: 12px;
+}
+.step-number {
+  border-radius: 0;
+  border-color: #72805f;
+  font-size: 12px;
+}
+.text-fields {
+  display: grid;
+  gap: 24px;
+}
+.text-field {
+  scroll-margin-block: 24px;
+}
+.text-field .input-label {
+  justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.field-number {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  background: #e0e6d5;
+  color: #3b4930;
+  font-size: 12px;
+}
+.text-field.active .field-number {
+  background: #2f4222;
+  color: white;
+}
+.text-field input:focus,
+.text-field textarea:focus {
+  outline: 2px solid #47602f;
+  outline-offset: 2px;
+}
+.text-settings {
+  margin: 24px 0;
+  border: 1px solid #b9bab0;
+  padding: 12px;
+}
+.text-settings > summary {
+  font-size: 13px;
+  font-weight: 700;
+  min-height: 44px;
+  display: list-item;
+  align-content: center;
+}
+.text-settings .select-label {
+  margin-top: 16px;
+}
+.choice-group h3 {
+  font-size: 14px;
+}
+.check-label {
+  font-size: 13px;
+  min-height: 44px;
+}
+.upload-box {
+  border-radius: 0;
+  border-color: #8a9779;
+  background: #edf1e4;
+  font-size: 14px;
+}
+.field-target {
+  border: 1px dashed #4c6638;
+  background: #b5d8780c;
+  min-height: 24px;
+}
+.field-target:hover,
+.field-target.selected {
+  border: 2px solid #3e5e22;
+  background: #8ab34d16;
+}
+.target-number {
+  position: absolute;
+  top: -11px;
+  left: -1px;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  background: #2f4222;
+  color: white;
+  font: 12px/1 sans-serif;
+  border: 1px solid #f5f4e9;
+}
+.save-status {
+  border-radius: 0;
+  font-size: 12px;
+}
+@media (max-width: 900px) {
+  .editor-grid {
+    grid-template-columns: 1fr;
+  }
+  .preview-panel {
+    position: static;
+  }
+  .preview-card {
+    max-width: 360px;
+  }
+}
+@media (max-width: 720px) {
+  .site-header {
+    padding: 18px 20px;
+    gap: 14px;
+    align-items: start;
+  }
+  .brand {
+    font-size: 16px;
+    max-width: 210px;
+  }
+  .header-link {
+    font-size: 11px;
+  }
+  .unofficial-notice {
+    padding: 10px 20px;
+    text-align: left;
+    font-size: 11px;
+  }
+  .tool-intro {
+    padding: 32px 0 24px;
+  }
+  .tool-intro > p:last-child {
+    font-size: 12px;
+    line-height: 2;
+  }
+  .template-info h3 {
+    font-size: 21px;
+  }
+  .template-art {
+    padding: 24px;
+  }
+  .editor-heading {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .controls-panel {
+    padding: 22px 18px;
+  }
+  .preview-meta,
+  .preview-hint {
+    font-size: 11px;
+  }
+  .preview-panel > .author {
+    font-size: 12px;
+  }
+  .field-target {
+    min-height: 24px;
   }
 }
