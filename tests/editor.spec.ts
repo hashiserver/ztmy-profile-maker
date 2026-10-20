@@ -35,6 +35,9 @@ test('mobile field selection, icon upload and no horizontal overflow', async ({
   await page.goto('/edit/midnight-note/');
   await expect(page.getByText('編集できます', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'ひとことを編集' }).click();
+  await expect(
+    page.getByRole('textbox', { name: 'ひとこと', exact: true }),
+  ).toBeFocused();
   await page
     .getByRole('textbox', { name: 'ひとこと', exact: true })
     .fill('夜に聴きたい12曲。');
@@ -131,6 +134,7 @@ test('export exactly matches settled preview pixels after font change', async ({
   await page
     .getByRole('textbox', { name: '名前', exact: true })
     .fill('夜明けの記憶「2026」');
+  await page.locator('.text-settings > summary').click();
   await page
     .getByRole('combobox', { name: 'フォント', exact: true })
     .selectOption('serif');
@@ -237,4 +241,33 @@ test('newer stored revision warns instead of claiming a stale edit is saved', as
   await expect(
     page.getByRole('button', { name: 'PNGを保存', exact: true }),
   ).toBeEnabled();
+});
+
+test('home has Japanese title, top disclaimer and credited author without promotional hero', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await expect(page).toHaveTitle('ずとまよプロフィールメーカー');
+  await expect(page.locator('.unofficial-notice')).toContainText(
+    '公式サービスとは関係ありません',
+  );
+  await expect(
+    page.locator('.template-info').getByRole('link', { name: '@1to_ztmy' }),
+  ).toHaveAttribute('href', 'https://x.com/1to_ztmy');
+  await expect(page.getByText('A LITTLE ABOUT YOU.')).toHaveCount(0);
+  await expect(page.getByText('あなたの「好き」を、')).toHaveCount(0);
+  await page.screenshot({
+    path: 'test-results/home-desktop.png',
+    fullPage: true,
+  });
+  await page.setViewportSize({ width: 375, height: 812 });
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({
+    path: 'test-results/home-mobile.png',
+    fullPage: true,
+  });
 });

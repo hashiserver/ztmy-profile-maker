@@ -47,7 +47,7 @@ export default function CardPreview({
         {template.fields
           .filter((f) => f.kind === 'text')
           .map(
-            (f) =>
+            (f, index) =>
               f.kind === 'text' && (
                 <button
                   key={f.id}
@@ -63,7 +63,9 @@ export default function CardPreview({
                   aria-pressed={selected === f.id}
                   onClick={() => onSelect(f.id)}
                 >
-                  <span className="sr-only">{f.label}</span>
+                  <span className="target-number" aria-hidden="true">
+                    {index + 1}
+                  </span>
                 </button>
               ),
           )}
