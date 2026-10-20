@@ -58,3 +58,8 @@ IMEイベントの自動テストは実際のOSキーボードを代替しない
 - https://developers.cloudflare.com/pages/configuration/branch-build-controls/
 
 Cloudflare接続・本番公開・PRマージはこの初期実装に含めない。
+
+
+## 2026-10-20 掲載終了更新
+
+使用許可を得られなかった提供画像・登録データ・編集ページの生成・掲載入口を削除。上記の提供画像に関する記述は過去の実装記録であり、現在の公開対象ではない。

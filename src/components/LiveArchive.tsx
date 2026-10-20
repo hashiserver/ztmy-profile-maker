@@ -21,15 +21,6 @@ export default function LiveArchive({ templates }: { templates: Template[] }) {
   useEffect(() => setMounted(true), []);
   const collections: Collection[] = [
     {
-      id: 'bunka-denrai',
-      title: '文禍伝雷',
-      subtitle: 'LEGACY ZOMBIE LABO',
-      date: '2026.10.10（土）– 10.11（日）',
-      venue: '奈良・平城京',
-      poster: '/images/bunka-denrai-live.jpg',
-      templates: templates.filter((t) => t.id === 'ztmy-heijokyo-2026'),
-    },
-    {
       id: 'original',
       title: 'オリジナル・デモ',
       subtitle: 'ライブを問わず使えるカード',
@@ -59,7 +50,7 @@ export default function LiveArchive({ templates }: { templates: Template[] }) {
             aria-label={c.title}
           >
             <BrowserFrame
-              title="ずとまよライブアーカイブ"
+              title="プロフィールカードアーカイブ"
               address={`archive://live/${c.id}`}
             >
               <button
@@ -69,15 +60,11 @@ export default function LiveArchive({ templates }: { templates: Template[] }) {
                 aria-label={`${c.title}のテンプレートを見る`}
               >
                 <img
-                  className={`live-poster ${i === 1 ? 'demo-poster' : ''}`}
+                  className="live-poster demo-poster"
                   src={c.poster}
-                  alt={
-                    i === 0
-                      ? '文禍伝雷のライブビジュアル'
-                      : 'Midnight note オリジナルカード'
-                  }
-                  width={i === 0 ? 1200 : 1200}
-                  height={i === 0 ? 800 : 1600}
+                  alt={`${c.title}のカード`}
+                  width={1200}
+                  height={1600}
                 />
                 <div className="live-caption">
                   <div>
@@ -98,7 +85,7 @@ export default function LiveArchive({ templates }: { templates: Template[] }) {
         ))}
       </div>
       <p className="archive-note">
-        提供テンプレートの掲載許諾・利用条件は確認中です。
+        現在は運営制作のオリジナル・デモを公開しています。
         <a href="/about/#template-permission">
           掲載状況について <ArrowUpRightIcon aria-hidden="true" />
         </a>
