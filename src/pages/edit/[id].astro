@@ -1,0 +1,18 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Editor from '../../components/Editor';
+import { templates } from '../../data/templates';
+export function getStaticPaths() {
+  return templates.map((template) => ({
+    params: { id: template.id },
+    props: { template },
+  }));
+}
+const { template } = Astro.props;
+---
+
+<Layout title={`${template.title} を編集 | ztmy profile maker`}
+  ><Editor template={template} client:load /><noscript
+    ><p>カードを編集するにはJavaScriptを有効にしてください。</p></noscript
+  ></Layout
+>
