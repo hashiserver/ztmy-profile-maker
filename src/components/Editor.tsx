@@ -231,7 +231,9 @@ export default function Editor({ template }: { template: Template }) {
           <p className="eyebrow">YOUR PROFILE, YOUR WORDS.</p>
           <h1>{template.title}</h1>
         </div>
-        <span className="demo-badge">オリジナル・デモ</span>
+        <span className="demo-badge">
+          {template.badge || 'オリジナル・デモ'}
+        </span>
       </div>
       {error && (
         <div className="alert" role="alert">

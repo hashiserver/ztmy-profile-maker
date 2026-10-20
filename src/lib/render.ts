@@ -67,9 +67,13 @@ export function renderCard(
       for (const option of f.options)
         if (d.choices[f.id]?.includes(option.id)) {
           ctx.beginPath();
-          ctx.moveTo(option.x - 14, option.y);
-          ctx.lineTo(option.x - 3, option.y + 12);
-          ctx.lineTo(option.x + 17, option.y - 15);
+          if (f.mark === 'circle')
+            ctx.arc(option.x, option.y, f.radius ?? 25, 0, Math.PI * 2);
+          else {
+            ctx.moveTo(option.x - 14, option.y);
+            ctx.lineTo(option.x - 3, option.y + 12);
+            ctx.lineTo(option.x + 17, option.y - 15);
+          }
           ctx.stroke();
         }
       continue;

@@ -3,7 +3,7 @@ test('select, edit, export source-size PNG, restore local draft', async ({
   page,
 }) => {
   await page.goto('/');
-  await page.getByRole('link', { name: 'このテンプレートを使う' }).click();
+  await page.locator('a.primary-button[href="/edit/midnight-note/"]').click();
   await expect(page.getByText('編集できます', { exact: true })).toBeVisible();
   await page
     .getByRole('textbox', { name: '名前', exact: true })

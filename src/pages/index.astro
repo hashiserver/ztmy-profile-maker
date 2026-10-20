@@ -13,7 +13,8 @@ import { templates } from '../data/templates';
         />ことばをのせて、あなたらしい自己紹介カードを。
       </p><div class="hero-tags">
         <span>登録不要</span><span>ブラウザだけで編集</span><span
-          >PNGで保存</span>
+          >PNGで保存</span
+        >
       </div><div class="hero-mark" aria-hidden="true">
         夜<span>の、つづき。</span>
       </div>
@@ -25,10 +26,11 @@ import { templates } from '../data/templates';
             テンプレートを選ぶ
           </h2>
         </div><span class="count"
-          >{String(templates.length).padStart(2, '0')} TEMPLATE</span>
+          >{String(templates.length).padStart(2, '0')} TEMPLATE</span
+        >
       </div><div class="template-list">
         {
-          templates.map((t) => (
+          templates.map((t, index) => (
             <article class="template-tile">
               <>
                 <a
@@ -39,21 +41,25 @@ import { templates } from '../data/templates';
                   <>
                     <img
                       src={t.background}
-                      alt={`${t.title}の自己紹介カード。名前、好きな曲、思い出、ひとこと欄。`}
+                      alt={
+                        t.description ||
+                        `${t.title}の自己紹介カード。名前、好きな曲、思い出、ひとこと欄。`
+                      }
                       width={t.width}
                       height={t.height}
                     />
-                    <span class="tile-badge">ORIGINAL DEMO</span>
+                    <span class="tile-badge">{t.badge || 'ORIGINAL DEMO'}</span>
                   </>
                 </a>
                 <div class="template-info">
                   <>
-                    <p class="eyebrow">01 / MUSIC & YOU</p>
+                    <p class="eyebrow">
+                      {String(index + 1).padStart(2, '0')} / MUSIC & YOU
+                    </p>
                     <h3>{t.title}</h3>
                     <p>
-                      余白に、好きな音楽とあなたのこと。
-                      <br />
-                      横書き・縦書きを試せるデモカードです。
+                      {t.description ||
+                        '横書き・縦書きを試せるオリジナルのデモカードです。'}
                     </p>
                     <a
                       class="author"
@@ -84,8 +90,8 @@ import { templates } from '../data/templates';
     </section>
     <aside class="home-note">
       <span class="note-number">NOTE</span><p>
-        現在は開発中の初期版です。掲載中のカードは運営制作のデモです。<br
-        />作者提供テンプレートは、掲載・画像生成等の許諾を確認してから追加します。
+        現在は開発中のプレビューです。<br
+        />提供テンプレートの許諾・作者情報は確認中です。一般公開前に確認を完了します。
       </p>
     </aside>
   </div></Layout

@@ -20,12 +20,16 @@ export type ChoiceField = {
   kind: 'choice';
   label: string;
   multiple: boolean;
+  mark?: 'check' | 'circle';
+  radius?: number;
   options: { id: string; label: string; x: number; y: number }[];
 };
 export type Template = {
   id: string;
   version: number;
   title: string;
+  description?: string;
+  badge?: string;
   width: number;
   height: number;
   background: string;
