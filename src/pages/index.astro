@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { templates } from '../data/templates';
+---
+
+<Layout
+  ><div class="home-shell">
+    <section class="hero">
+      <p class="eyebrow">A LITTLE ABOUT YOU.</p><h1>
+        あなたの「好き」を、<br /><span>一枚に。</span>
+      </h1><p class="hero-description">
+        好きな曲も、忘れられない夜も。<br
+        />ことばをのせて、あなたらしい自己紹介カードを。
+      </p><div class="hero-tags">
+        <span>登録不要</span><span>ブラウザだけで編集</span><span
+          >PNGで保存</span>
+      </div><div class="hero-mark" aria-hidden="true">
+        夜<span>の、つづき。</span>
+      </div>
+    </section>
+    <section class="template-section" aria-labelledby="templates-heading">
+      <div class="section-title">
+        <div>
+          <p class="eyebrow">CHOOSE YOUR CANVAS</p><h2 id="templates-heading">
+            テンプレートを選ぶ
+          </h2>
+        </div><span class="count"
+          >{String(templates.length).padStart(2, '0')} TEMPLATE</span>
+      </div><div class="template-list">
+        {
+          templates.map((t) => (
+            <article class="template-tile">
+              <>
+                <a
+                  class="template-art"
+                  href={`/edit/${t.id}/`}
+                  aria-label={`${t.title}の編集画面を開く`}
+                >
+                  <>
+                    <img
+                      src={t.background}
+                      alt={`${t.title}の自己紹介カード。名前、好きな曲、思い出、ひとこと欄。`}
+                      width={t.width}
+                      height={t.height}
+                    />
+                    <span class="tile-badge">ORIGINAL DEMO</span>
+                  </>
+                </a>
+                <div class="template-info">
+                  <>
+                    <p class="eyebrow">01 / MUSIC & YOU</p>
+                    <h3>{t.title}</h3>
+                    <p>
+                      余白に、好きな音楽とあなたのこと。
+                      <br />
+                      横書き・縦書きを試せるデモカードです。
+                    </p>
+                    <a
+                      class="author"
+                      href={t.author.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <>
+                        <img
+                          src={t.author.avatar}
+                          width="28"
+                          height="28"
+                          alt=""
+                        />
+                        <span>{t.author.name} ↗</span>
+                      </>
+                    </a>
+                    <a class="primary-button" href={`/edit/${t.id}/`}>
+                      このテンプレートを使う <span aria-hidden="true">→</span>
+                    </a>
+                  </>
+                </div>
+              </>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+    <aside class="home-note">
+      <span class="note-number">NOTE</span><p>
+        現在は開発中の初期版です。掲載中のカードは運営制作のデモです。<br
+        />作者提供テンプレートは、掲載・画像生成等の許諾を確認してから追加します。
+      </p>
+    </aside>
+  </div></Layout
+>

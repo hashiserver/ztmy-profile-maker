@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600">
+<rect width="1200" height="1600" fill="#efe9f5"/><rect x="36" y="36" width="1128" height="1528" rx="12" fill="#fffdf8" stroke="#33273f" stroke-width="3"/>
+<path d="M70 180H1130M70 1380H1130" stroke="#33273f" stroke-width="2"/>
+<g fill="#39284e" font-family="sans-serif"><text x="90" y="128" font-size="58" font-weight="700" letter-spacing="4">MIDNIGHT NOTE</text><text x="900" y="117" font-size="19">PROFILE / 01</text>
+<circle cx="220" cy="360" r="123" fill="#e9e1f1" stroke="#7b6690" stroke-width="2"/><text x="175" y="371" font-size="23">ICON</text>
+<text x="390" y="262" font-size="24" letter-spacing="3">NAME</text><path d="M390 379H1080" stroke="#ae9abf"/>
+<text x="120" y="555" font-size="25" letter-spacing="3">FAVORITE SONGS</text><rect x="95" y="575" width="1010" height="190" rx="8" fill="#f5f0f8"/>
+<text x="120" y="805" font-size="25" letter-spacing="3">WHAT I LOVE</text><rect x="95" y="825" width="830" height="315" rx="8" fill="#f5f0f8"/>
+<text x="1000" y="805" font-size="20">NOTE</text><rect x="965" y="825" width="140" height="355" rx="8" fill="#e9f0e9"/>
+<text x="120" y="1205" font-size="23" letter-spacing="3">MY STYLE</text>
+<circle cx="145" cy="1258" r="25" fill="none" stroke="#ae9abf" stroke-width="2"/><text x="190" y="1270" font-size="30">LISTEN</text><circle cx="445" cy="1258" r="25" fill="none" stroke="#ae9abf" stroke-width="2"/><text x="490" y="1270" font-size="30">LIVE</text><circle cx="790" cy="1258" r="25" fill="none" stroke="#ae9abf" stroke-width="2"/><text x="835" y="1270" font-size="30">CREATE</text>
+<text x="90" y="1465" font-size="24" letter-spacing="3">A LITTLE ABOUT ME, A LOT ABOUT MUSIC.</text><text x="90" y="1510" font-size="18">Original demo template · ztmy profile maker</text>
+</g><path d="M1042 1409a34 34 0 1 0 38 51 36 36 0 0 1-38-51" fill="#bda4db"/>
+</svg>
